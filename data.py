@@ -12,10 +12,12 @@ def csv_to_df(file_name):
     #TODO: After fixing the sensors' data collection this won't be necassary
     # Replacing the Quat and LAcc values
     df = df.copy()
-    df[['Quaternion w', 'Quaternion x', 'Quaternion y']] = df[['Linear Acceleration x','Linear Acceleration y', 'Linear Acceleration z']].values
-    df[['Linear Acceleration x','Linear Acceleration y', 'Linear Acceleration z']] = df[['Quaternion w', 'Quaternion x', 'Quaternion y']].values
-
-    ## Joint_name and id_to_body are configured in configF.py ##
+    # Apply transformation only to rows where ID == 2, 12, 15
+    condition = df["ID"].isin([2, 12, 15])
+    df.loc[condition, ['Quaternion w', 'Quaternion x', 'Quaternion y']] = df.loc[condition, ['Linear Acceleration x', 'Linear Acceleration y', 'Linear Acceleration z']].values
+    df.loc[condition, ['Linear Acceleration x', 'Linear Acceleration y', 'Linear Acceleration z']] = df.loc[condition, ['Quaternion w', 'Quaternion x', 'Quaternion y']].values
+    
+    #### Joint_name and id_to_body are configured in configF.py ####
 
 
     # Create a new column for body part

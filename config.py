@@ -1,13 +1,20 @@
 # Choose the file from which you want to collect data offline
-file_name = "Data\F.csv"
-cal_file_name = "Data\F-Cal.csv"
+file_name = r"Data\Main.csv"
+cal_file_name = r"Data\Main-Npose-Cal.csv"
 
 #========================================================#
 
 # Select IMU IDs and body parts from here #
 id_to_body = {
-            2: 'pelvis_imu',
-            12: 'hand_r_imu',
+            6: 'pelvis_imu',
+            9: 'radius_l_imu',
+            10: 'radius_r_imu',
+            2: 'humerus_l_imu',
+            12: 'humerus_r_imu',
+            15: 'femur_l_imu',
+            13: 'femur_r_imu',
+            5: 'calcn_l_imu',
+            8: 'calcn_r_imu',
              }
 
 IDs = list(id_to_body.keys())
